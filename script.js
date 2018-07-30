@@ -7,13 +7,18 @@ const resetButton = document.querySelector("#reset");
 var minutes =0, seconds=0, hundredths=0, thousandth=0;
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
-
+function leadingZero(time){
+    if (time <= 9){
+        time = "0" + time;
+    }
+    return time;
+}
 
 // Run a standard minute/second/hundredths timer:
 function runTimer() {
-    theTimer.innerHTML = minutes + ":" + seconds + ":" + hundredths;
+    theTimer.innerHTML = leadingZero(minutes) + ":" + leadingZero(seconds) + ":" + leadingZero(hundredths);
     
-    minutes = Math.floor(thousandth/100/60);
+    minutes = Math.floor(thousandth/6000);
     seconds = Math.floor(thousandth/100 - minutes * 60);
     hundredths = Math.floor(thousandth - (minutes * 6000 + seconds * 100));
     thousandth++;
