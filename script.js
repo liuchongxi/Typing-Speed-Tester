@@ -27,7 +27,19 @@ function runTimer() {
 // Match the text entered with the provided text on the page:
 function matchText(){
     let enteredText = testArea.value;
-    console.log(enteredText);
+    let originTextPortion = originText.substring(0, enteredText.length);
+    // display blue border if enteredText correct
+    if (enteredText === originText){    
+        testWrapper.setAttribute("style", "border-color: lightgreen");
+    }
+    // display orange border if enteredText wrong
+    else if(enteredText === originTextPortion){
+        testWrapper.setAttribute("style", "border-color: #65CCf3");
+    }
+    // display green border if entered Text exactly match
+    else{
+        testWrapper.setAttribute("style", "border-color: #E95D0F");
+    }
 }
 
 // Start the timer:
