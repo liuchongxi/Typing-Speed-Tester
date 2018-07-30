@@ -5,6 +5,7 @@ const theTimer = document.querySelector(".timer");
 const resetButton = document.querySelector("#reset");
 
 var minutes =0, seconds=0, hundredths=0, thousandth=0;
+var runningTimer;
 
 // Add leading zero to numbers 9 or below (purely for aesthetics):
 function leadingZero(time){
@@ -29,7 +30,8 @@ function matchText(){
     let enteredText = testArea.value;
     let originTextPortion = originText.substring(0, enteredText.length);
     // display blue border if enteredText correct
-    if (enteredText === originText){    
+    if (enteredText === originText){
+        clearInterval(runningTimer);
         testWrapper.setAttribute("style", "border-color: lightgreen");
     }
     // display orange border if enteredText wrong
@@ -45,13 +47,20 @@ function matchText(){
 // Start the timer:
 function startTimer(){
     if (theTimer.innerHTML === "00:00:00"){
-        setInterval(runTimer, 10);
+        runningTimer = setInterval(runTimer, 10);
     }
 }
 
 // Reset everything:
 function reset(){
-
+    clearInterval(runningTimer);
+    testWrapper.removeAttribute("style");
+    theTimer.innerHTML = "00:00:00";
+    testArea.value = "";
+    minutes =0;
+    seconds=0;
+    hundredths=0;
+    thousandth=0;
 }
 
 // Event listeners for keyboard input and the reset button:
