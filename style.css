@@ -183,6 +183,6 @@ body {
 }
 
 #reset:hover {
-    color: white;
-    background-color: #E95D0F;
+    border-color: red;
+    color: red;
 }
